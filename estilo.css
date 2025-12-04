@@ -4,18 +4,32 @@ header,main,footer{
   padding:20px;
   font-family:sans-serif;
 }
+body{
+  background-color: black;
+  color: white;
+}
 main{
 	display:grid;
   grid-template-columns:repeat(3,100fr);gap:20px;
 }
-img{width:100%;}
-a{
+main a{
 	color:white;
   text-decoration:inherit;
   background:indigo;
   padding:10px;
   border-radius:5px;
 }
+img{width:100%;}
+
 header,footer{
 	text-align:center;
+}
+footer{
+  width: 100%;
+}
+footer img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  filter: invert(1) drop-shadow(0 0 30px white);
 }
