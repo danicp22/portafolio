@@ -1,63 +1,216 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Portafolio Dani</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="estilo.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio | Daniel Calve Pardo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root{
+            --bg:#000;
+            --card:#111;
+            --accent:#00e0c2;
+            --text:#f4f7fa;
+            --muted:#9aa0a6;
+        }
+
+        *{box-sizing:border-box;margin:0;padding:0}
+
+        body{
+            font-family:"Inter",sans-serif;
+            background:var(--bg);
+            color:var(--text);
+        }
+
+        header{
+            max-width:1200px;
+            margin:auto;
+            padding:40px 20px 20px 20px;
+            text-align:center;
+            position:relative;
+        }
+
+        header h1{
+            font-size:32px;
+            margin-bottom:5px;
+        }
+
+        header h2{
+            font-weight:300;
+            color:var(--muted);
+            margin-bottom:20px;
+        }
+
+        nav{
+            position:absolute;
+            top:40px;
+            right:20px;
+        }
+
+        nav ul{
+            list-style:none;
+            display:flex;
+            gap:25px;
+        }
+
+        nav a{
+            text-decoration:none;
+            color:white;
+            font-weight:500;
+            transition:0.3s;
+        }
+
+        nav a:hover{
+            color:var(--accent);
+        }
+
+        main{
+            max-width:1200px;
+            margin:auto;
+            padding:40px 20px;
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+            gap:30px;
+        }
+
+        article{
+            background:var(--card);
+            border-radius:15px;
+            overflow:hidden;
+            box-shadow:0 10px 25px rgba(0,0,0,0.6);
+            transition:0.3s ease;
+            display:flex;
+            flex-direction:column;
+        }
+
+        article:hover{
+            transform:translateY(-8px);
+            box-shadow:0 15px 35px rgba(0,224,194,0.2);
+        }
+
+        article img{
+            width:100%;
+            height:200px;
+            object-fit:cover;
+            background:#222;
+        }
+
+        article .content{
+            padding:20px;
+            flex:1;
+            display:flex;
+            flex-direction:column;
+            justify-content:space-between;
+        }
+
+        article h3{
+            margin-bottom:10px;
+        }
+
+        article p{
+            font-size:14px;
+            color:var(--muted);
+            margin-bottom:20px;
+        }
+
+        article a{
+            align-self:flex-start;
+            text-decoration:none;
+            background:var(--accent);
+            color:#00221d;
+            padding:8px 16px;
+            border-radius:8px;
+            font-weight:600;
+            transition:0.3s;
+        }
+
+        article a:hover{
+            background:#00cbb0;
+        }
+
+        footer{
+            margin-top:40px;
+            padding:30px;
+            text-align:center;
+            border-top:1px solid rgba(255,255,255,0.05);
+        }
+
+        footer a img{
+            width:45px;
+            height:45px;
+            margin:0 10px;
+            border-radius:50%;
+            filter:invert(1);
+            transition:0.3s;
+        }
+
+        footer a img:hover{
+            transform:scale(1.1);
+            filter:invert(1) drop-shadow(0 0 10px var(--accent));
+        }
+
+        @media(max-width:600px){
+            header h1{font-size:26px}
+            nav{position:static;margin-top:15px}
+            nav ul{justify-content:center}
+        }
+    </style>
 </head>
 <body>
-    <header>
-            <h1>Daniel Calve Pardo</h1>
-            <h2>Portafolio Web</h2>
-        <nav>
-            <ul>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="https://danicp22.github.io/curriculum/">Curriculum</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <article>
-            <img src="">
-            <h3>Titulo del proyecto</h3>
-            <p>Parrafo con una descripcion del proyecto</p>
-            <a href="otrapagina.html">Saber más</a>
-        </article>
-        <article>
-            <img src="">
-            <h3>Titulo del proyecto</h3>
-            <p>Parrafo con una descripcion del proyecto</p>
-            <a href="otrapagina.html">Saber más</a>
-        </article>
-        <article>
-            <img src="">
-            <h3>Titulo del proyecto</h3>
-            <p>Parrafo con una descripcion del proyecto</p>
-            <a href="otrapagina.html">Saber más</a>
-        </article>
-        <article>
-            <img src="">
-            <h3>Titulo del proyecto</h3>
-            <p>Parrafo con una descripcion del proyecto</p>
-            <a href="otrapagina.html">Saber más</a>
-        </article>
-        <article>
-            <img src="">
-            <h3>Titulo del proyecto</h3>
-            <p>Parrafo con una descripcion del proyecto</p>
-            <a href="otrapagina.html">Saber más</a>
-        </article>
-        <article>
-            <img src="">
-            <h3>Titulo del proyecto</h3>
-            <p>Parrafo con una descripcion del proyecto</p>
-            <a href="otrapagina.html">Saber más</a>
-        </article>
-    </main>
-    <footer>
-        <a href="https://github.com/danicp22"><img src="github.png"></a>
-        <a href="https://www.linkedin.com/in/daniel-calve-pardo-6a0a71383/"><img src="linkedin.png"></a>
-    </footer>
-    
+
+<header>
+    <h1>Daniel Calve Pardo</h1>
+    <h2>Desarrollador Web en formación</h2>
+    <nav>
+        <ul>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="https://danicp22.github.io/curriculum/" target="_blank">Currículum</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+    <article>
+        <img src="" alt="Proyecto boxeo">
+        <div class="content">
+            <div>
+                <h3>Alquiler de Rings de Boxeo</h3>
+                <p>Proyecto completo con sistema de reservas, gestión de clientes y diseño responsive.</p>
+            </div>
+            <a href="otrapagina.html">Ver proyecto</a>
+        </div>
+    </article>
+
+    <article>
+        <img src="" alt="Proyecto 2">
+        <div class="content">
+            <div>
+                <h3>Proyecto Web 2</h3>
+                <p>Aplicación web desarrollada con HTML, CSS y JavaScript.</p>
+            </div>
+            <a href="#">Ver proyecto</a>
+        </div>
+    </article>
+
+    <article>
+        <img src="" alt="Proyecto 3">
+        <div class="content">
+            <div>
+                <h3>Proyecto Web 3</h3>
+                <p>Diseño moderno enfocado en experiencia de usuario.</p>
+            </div>
+            <a href="#">Ver proyecto</a>
+        </div>
+    </article>
+
+</main>
+
+<footer>
+    <a href="https://github.com/danicp22" target="_blank"><img src="github.png" alt="GitHub"></a>
+    <a href="https://www.linkedin.com/in/daniel-calve-pardo-6a0a71383/" target="_blank"><img src="linkedin.png" alt="LinkedIn"></a>
+</footer>
+
 </body>
 </html>

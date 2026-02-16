@@ -1,1 +1,249 @@
-esta es mi pagina de contacto
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contacto — Daniel Calve Pardo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#000000;
+      --card:#121214;
+      --accent:#00e0c2; /* coincide con tu CV */
+      --muted:#9aa0a6;
+      --heading:#f4f7fa;
+      --radius:14px;
+      --maxw:980px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:"Inter",system-ui,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--heading);
+      display:flex;
+      justify-content:center;
+      padding:36px 16px;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--maxw);
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:0 8px 30px rgba(0,0,0,0.6);
+      overflow:hidden;
+      display:grid;
+      grid-template-columns:1fr 420px;
+      gap:24px;
+      padding:28px;
+    }
+
+    header.header{
+      grid-column:1/-1;
+      text-align:center;
+      padding-bottom:6px;
+      border-bottom:1px solid rgba(255,255,255,0.04);
+    }
+    header.header h1{font-size:20px;margin-bottom:6px}
+    header.header p{color:var(--muted);font-size:14px}
+
+    .left{
+      padding:16px 8px 16px 24px;
+    }
+
+    .intro{
+      margin-bottom:18px;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    form.contact-form{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    label{font-size:13px;color:var(--muted)}
+    input[type=text], input[type=email], textarea{
+      background:#0f1112;
+      border:1px solid rgba(255,255,255,0.04);
+      padding:12px 14px;
+      border-radius:10px;
+      color:var(--heading);
+      font-size:15px;
+      outline:none;
+      transition:box-shadow .18s, border-color .18s;
+    }
+    input:focus, textarea:focus{box-shadow:0 0 0 4px rgba(0,224,194,0.06);border-color:var(--accent)}
+    textarea{min-height:140px;resize:vertical}
+
+    .actions{
+      display:flex;gap:12px;align-items:center;margin-top:6px;
+    }
+
+    button.send{
+      background:linear-gradient(180deg,var(--accent),#00caa9);
+      color:#06201c;border:none;padding:10px 16px;border-radius:10px;
+      font-weight:600;cursor:pointer;
+      box-shadow:0 6px 18px rgba(0,224,194,0.08);
+    }
+    button.send:disabled{opacity:.6;cursor:not-allowed}
+
+    .right{
+      padding:20px 20px 20px 12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);
+      border-radius:10px;
+    }
+
+    .card{background:transparent;padding:8px 6px}
+    .card h3{color:var(--accent);margin-bottom:8px}
+    .contact-line{color:var(--muted);font-size:15px;margin-bottom:12px}
+
+    .socials{display:flex;gap:12px;margin-top:8px}
+    .socials a img{width:44px;height:44px;border-radius:50%;filter:invert(1)}
+
+    .note{font-size:13px;color:var(--muted);margin-top:12px}
+
+    .message{margin-top:12px;padding:12px;border-radius:8px;font-size:14px;display:none}
+    .message.success{background:rgba(0,224,194,0.12);color:var(--accent);display:none}
+    .message.error{background:rgba(255,80,80,0.08);color:#ff9a9a}
+
+    /* responsive */
+    @media (max-width:900px){
+      .container{grid-template-columns:1fr}
+      .right{order:2}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" role="main">
+    <header class="header">
+      <h1>Contacto</h1>
+      <p>¿Tienes una idea o quieres colaborar? Escríbeme y te respondo lo antes posible.</p>
+    </header>
+
+    <section class="left">
+      <p class="intro">Rellena el formulario o usa los enlaces de la derecha. Si prefieres que te responda por WhatsApp o por email, deja tu teléfono y te contacto.</p>
+
+      <!-- FORM: por defecto envía a Formspree. Lee las notas abajo para cambiarlo -->
+      <form id="contactForm" class="contact-form" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+
+        <label for="name">Nombre</label>
+        <input id="name" name="name" type="text" placeholder="Tu nombre" required>
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="tu@ejemplo.com" required>
+
+        <label for="subject">Asunto</label>
+        <input id="subject" name="subject" type="text" placeholder="Sobre qué quieres hablar" required>
+
+        <label for="message">Mensaje</label>
+        <textarea id="message" name="message" placeholder="Cuéntame en detalle..." required></textarea>
+
+        <div class="actions">
+          <button id="sendBtn" class="send" type="submit">Enviar mensaje</button>
+        </div>
+
+        <div id="success" class="message success">¡Mensaje enviado! Gracias, te responderé pronto.</div>
+        <div id="error" class="message error">Error al enviar. Comprueba los datos o inténtalo más tarde.</div>
+      </form>
+
+    </section>
+
+    <aside class="right" aria-labelledby="contact-info">
+      <div class="card">
+        <h3 id="contact-info">Datos</h3>
+        <div class="contact-line"><strong>Email:</strong> <a href="mailto:danielcalvepardo@hotmail.com">danielcalvepardo@hotmail.com</a></div>
+        <div class="contact-line"><strong>Teléfono:</strong> <a href="tel:+34966321225">+34 696 321 225</a></div>
+        <div class="contact-line"><strong>Ubicación:</strong> Valencia, España</div>
+
+        <div class="socials">
+          <a href="https://github.com/danicp22" target="_blank" rel="noopener"><img src="github.png" alt="GitHub"></a>
+          <a href="https://www.linkedin.com/in/daniel-calve-pardo-6a0a71383/" target="_blank" rel="noopener"><img src="linkedin.png" alt="LinkedIn"></a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    // Pequeña lógica para mostrar feedback al usuario y permitir fallback mailto
+    (function(){
+      const form = document.getElementById('contactForm');
+      const sendBtn = document.getElementById('sendBtn');
+      const success = document.getElementById('success');
+      const error = document.getElementById('error');
+
+      form.addEventListener('submit', async function(e){
+        e.preventDefault();
+        sendBtn.disabled = true;
+        success.style.display = 'none'; error.style.display = 'none';
+
+        // Intenta enviar por fetch (Formspree acepta POSTS JSON si configuras endpoint)
+        try{
+          const formData = new FormData(form);
+          const json = Object.fromEntries(formData.entries());
+
+          // ENDPOINT: si quieres usar Formspree con fetch, reemplaza la URL por la de tu formspree
+          const endpoint = form.action;
+
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: {'Accept': 'application/json','Content-Type':'application/json'},
+            body: JSON.stringify(json)
+          });
+
+          if(res.ok){
+            success.style.display = 'block';
+            form.reset();
+          } else {
+            // si el endpoint no acepta JSON, intenta fallback con mailto
+            throw new Error('No aceptado');
+          }
+        }catch(err){
+          // Fallback: abrir cliente de correo con mailto (limitado por longitud y formato)
+          const name = encodeURIComponent(document.getElementById('name').value || '');
+          const email = encodeURIComponent(document.getElementById('email').value || '');
+          const subject = encodeURIComponent(document.getElementById('subject').value || '');
+          const message = encodeURIComponent(document.getElementById('message').value || '');
+
+          // Construye mailto hacia tu email
+          const mailto = `mailto:danielcalvepardo@hotmail.com?subject=${subject}&body=${message}%0A%0ADe:%20${name}%20(${email})`;
+          window.location.href = mailto;
+
+          // muestra mensaje de error si el mailto no funciona
+          setTimeout(()=>{ error.style.display = 'block'; }, 500);
+        } finally {
+          sendBtn.disabled = false;
+        }
+      });
+    })();
+  </script>
+  
+  <!-- Flecha volver al inicio -->
+  <a href="index.html" class="back-home">
+    <button><img src="flecha.png" alt="Volver al inicio"></button>
+  </a>
+
+  <style>
+    .back-home{
+      position:fixed;
+      bottom:20px;
+      left:20px;
+    }
+    .back-home button{
+      background-color:transparent;
+      border:none;
+      cursor:pointer;
+    }
+    .back-home img{
+      width:80px;
+      height:80px;
+    }
+    .back-home button:hover{
+      box-shadow:2px 2px 10px #00e0c2;
+      border-radius:50%;
+    }
+  </style>
+</body>
+</html>
