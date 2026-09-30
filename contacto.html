@@ -1,249 +1,225 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Contacto — Daniel Calve Pardo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contacto · Daniel Calvé Pardo</title>
+  <meta name="description" content="Contacta con Daniel Calvé Pardo, desarrollador web en Valencia.">
+  <meta name="theme-color" content="#07070b">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1'%3E%3Cstop offset='0' stop-color='%23a78bfa'/%3E%3Cstop offset='.5' stop-color='%2360a5fa'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='900' font-size='26' text-anchor='middle' fill='%2307070b'%3EDC%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
   <style>
-    :root{
-      --bg:#000000;
-      --card:#121214;
-      --accent:#00e0c2; /* coincide con tu CV */
-      --muted:#9aa0a6;
-      --heading:#f4f7fa;
-      --radius:14px;
-      --maxw:980px;
+    .page { position: relative; z-index: 2; min-height: 100svh; padding: 140px 0 40px; }
+    .grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 64px; align-items: start; }
+    .title { font: 800 clamp(52px, 8vw, 116px)/0.9 var(--f-display); letter-spacing: -0.05em; margin-top: 18px; }
+    .lead { margin-top: 24px; color: var(--soft); font-size: 18px; max-width: 440px; }
+
+    .direct { margin-top: 40px; display: grid; gap: 10px; max-width: 440px; }
+    .direct a, .direct button {
+      display: flex; align-items: center; gap: 16px; text-align: left; width: 100%;
+      padding: 18px 20px; border-radius: 18px; text-decoration: none; color: var(--text);
+      background: rgba(255,255,255,.03); border: 1px solid var(--line); font: inherit;
+      transition: all .35s var(--spring); cursor: pointer;
     }
+    .direct a:hover, .direct button:hover { background: rgba(255,255,255,.07); border-color: var(--line2); transform: translateX(6px); }
+    .direct .ic { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; flex: none; background: var(--grad); color: #07070b; }
+    .direct .ic svg { width: 20px; height: 20px; }
+    .direct small { display: block; font: 500 11px/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .direct span.v { font-size: 16px; }
+    .direct .arrow { margin-left: auto; color: var(--muted); transition: transform .3s; }
+    .direct a:hover .arrow, .direct button:hover .arrow { transform: translate(3px, -3px); color: var(--text); }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family:"Inter",system-ui,Arial,sans-serif;
-      background:var(--bg);
-      color:var(--heading);
-      display:flex;
-      justify-content:center;
-      padding:36px 16px;
+    .form-card {
+      position: relative; padding: 36px; border-radius: 28px; overflow: hidden;
+      background: linear-gradient(180deg, var(--s1), var(--bg2)); border: 1px solid var(--line);
     }
-
-    .container{
-      width:100%;
-      max-width:var(--maxw);
-      background:var(--card);
-      border-radius:var(--radius);
-      box-shadow:0 8px 30px rgba(0,0,0,0.6);
-      overflow:hidden;
-      display:grid;
-      grid-template-columns:1fr 420px;
-      gap:24px;
-      padding:28px;
+    .form-card::before {
+      content: ''; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none;
+      background: linear-gradient(140deg, rgba(167,139,250,.6), transparent 35%, transparent 65%, rgba(34,211,238,.5));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
     }
-
-    header.header{
-      grid-column:1/-1;
-      text-align:center;
-      padding-bottom:6px;
-      border-bottom:1px solid rgba(255,255,255,0.04);
+    .form-card h2 { font: 700 26px/1.1 var(--f-display); letter-spacing: -0.02em; }
+    .form-card > p { color: var(--muted); margin-top: 6px; font-size: 14px; }
+    form { margin-top: 26px; display: grid; gap: 14px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .field { position: relative; }
+    .field input, .field textarea {
+      width: 100%; font: 400 16px/1.4 var(--f-body); color: var(--text);
+      background: rgba(0,0,0,.25); border: 1px solid var(--line2); border-radius: 14px;
+      padding: 24px 16px 10px; outline: none; transition: border-color .25s, box-shadow .25s, background .25s;
     }
-    header.header h1{font-size:20px;margin-bottom:6px}
-    header.header p{color:var(--muted);font-size:14px}
-
-    .left{
-      padding:16px 8px 16px 24px;
+    .field textarea { min-height: 150px; resize: vertical; }
+    .field label {
+      position: absolute; left: 17px; top: 17px; font-size: 15px; color: var(--muted); pointer-events: none;
+      transition: all .25s var(--ease);
     }
-
-    .intro{
-      margin-bottom:18px;
-      color:var(--muted);
-      line-height:1.6;
+    .field input:focus, .field textarea:focus { border-color: #818cf8; box-shadow: 0 0 0 4px rgba(129,140,248,.15); background: rgba(0,0,0,.35); }
+    .field input:focus + label, .field input:not(:placeholder-shown) + label,
+    .field textarea:focus + label, .field textarea:not(:placeholder-shown) + label {
+      top: 8px; font-size: 11px; letter-spacing: .06em; color: #a5b4fc;
     }
-
-    form.contact-form{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
+    .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .chips input { position: absolute; opacity: 0; pointer-events: none; }
+    .chips label {
+      font-size: 14px; padding: 9px 15px; border-radius: 999px; border: 1px solid var(--line2); color: var(--soft);
+      cursor: pointer; transition: all .25s var(--spring);
     }
+    .chips input:checked + label { background: var(--text); color: #07070b; border-color: var(--text); transform: scale(1.04); }
+    .chips input:focus-visible + label { box-shadow: 0 0 0 3px rgba(129,140,248,.5); }
+    .chips-label { font: 500 11px/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .send { justify-content: center; width: 100%; margin-top: 6px; }
+    .send:disabled { opacity: .6; pointer-events: none; }
+    .msg { display: none; font-size: 14px; padding: 14px 16px; border-radius: 12px; }
+    .msg.ok { display: block; background: rgba(184,255,92,.1); color: var(--lime); border: 1px solid rgba(184,255,92,.25); }
+    .msg.err { display: block; background: rgba(255,90,90,.08); color: #ffa3a3; border: 1px solid rgba(255,90,90,.25); }
 
-    label{font-size:13px;color:var(--muted)}
-    input[type=text], input[type=email], textarea{
-      background:#0f1112;
-      border:1px solid rgba(255,255,255,0.04);
-      padding:12px 14px;
-      border-radius:10px;
-      color:var(--heading);
-      font-size:15px;
-      outline:none;
-      transition:box-shadow .18s, border-color .18s;
-    }
-    input:focus, textarea:focus{box-shadow:0 0 0 4px rgba(0,224,194,0.06);border-color:var(--accent)}
-    textarea{min-height:140px;resize:vertical}
-
-    .actions{
-      display:flex;gap:12px;align-items:center;margin-top:6px;
-    }
-
-    button.send{
-      background:linear-gradient(180deg,var(--accent),#00caa9);
-      color:#06201c;border:none;padding:10px 16px;border-radius:10px;
-      font-weight:600;cursor:pointer;
-      box-shadow:0 6px 18px rgba(0,224,194,0.08);
-    }
-    button.send:disabled{opacity:.6;cursor:not-allowed}
-
-    .right{
-      padding:20px 20px 20px 12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);
-      border-radius:10px;
-    }
-
-    .card{background:transparent;padding:8px 6px}
-    .card h3{color:var(--accent);margin-bottom:8px}
-    .contact-line{color:var(--muted);font-size:15px;margin-bottom:12px}
-
-    .socials{display:flex;gap:12px;margin-top:8px}
-    .socials a img{width:44px;height:44px;border-radius:50%;filter:invert(1)}
-
-    .note{font-size:13px;color:var(--muted);margin-top:12px}
-
-    .message{margin-top:12px;padding:12px;border-radius:8px;font-size:14px;display:none}
-    .message.success{background:rgba(0,224,194,0.12);color:var(--accent);display:none}
-    .message.error{background:rgba(255,80,80,0.08);color:#ff9a9a}
-
-    /* responsive */
-    @media (max-width:900px){
-      .container{grid-template-columns:1fr}
-      .right{order:2}
+    @media (max-width: 900px) {
+      .page { padding-top: 110px; }
+      .grid { grid-template-columns: 1fr; gap: 48px; }
+      .form-card { padding: 24px; }
+      .row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
 
-  <div class="container" role="main">
-    <header class="header">
-      <h1>Contacto</h1>
-      <p>¿Tienes una idea o quieres colaborar? Escríbeme y te respondo lo antes posible.</p>
-    </header>
+  <nav class="nav" id="nav">
+    <a href="index.html" class="logo" data-hover><span class="logo-mark">DC</span> Daniel Calvé</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#proyectos">Proyectos</a></li>
+      <li><a href="index.html#sobre-mi">Sobre mí</a></li>
+      <li><a href="index.html#trayectoria">Trayectoria</a></li>
+      <li><a href="contacto.html" class="active">Contacto</a></li>
+    </ul>
+    <div style="display:flex;gap:8px;align-items:center">
+      <a href="cv.html" class="nav-cta" data-hover>
+        CV
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
+      </button>
+    </div>
+  </nav>
 
-    <section class="left">
-      <p class="intro">Rellena el formulario o usa los enlaces de la derecha. Si prefieres que te responda por WhatsApp o por email, deja tu teléfono y te contacto.</p>
+  <main class="page">
+    <div class="wrap grid">
+      <div>
+        <span class="eyebrow reveal">Contacto</span>
+        <h1 class="title reveal" data-delay="1">Cuéntame<br><span class="grad-text">tu idea.</span></h1>
+        <p class="lead reveal" data-delay="2">¿Prácticas, un proyecto o una web para tu negocio? Te respondo lo antes posible.</p>
 
-      <!-- FORM: por defecto envía a Formspree. Lee las notas abajo para cambiarlo -->
-      <form id="contactForm" class="contact-form" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
-
-        <label for="name">Nombre</label>
-        <input id="name" name="name" type="text" placeholder="Tu nombre" required>
-
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" placeholder="tu@ejemplo.com" required>
-
-        <label for="subject">Asunto</label>
-        <input id="subject" name="subject" type="text" placeholder="Sobre qué quieres hablar" required>
-
-        <label for="message">Mensaje</label>
-        <textarea id="message" name="message" placeholder="Cuéntame en detalle..." required></textarea>
-
-        <div class="actions">
-          <button id="sendBtn" class="send" type="submit">Enviar mensaje</button>
-        </div>
-
-        <div id="success" class="message success">¡Mensaje enviado! Gracias, te responderé pronto.</div>
-        <div id="error" class="message error">Error al enviar. Comprueba los datos o inténtalo más tarde.</div>
-      </form>
-
-    </section>
-
-    <aside class="right" aria-labelledby="contact-info">
-      <div class="card">
-        <h3 id="contact-info">Datos</h3>
-        <div class="contact-line"><strong>Email:</strong> <a href="mailto:danielcalvepardo@hotmail.com">danielcalvepardo@hotmail.com</a></div>
-        <div class="contact-line"><strong>Teléfono:</strong> <a href="tel:+34966321225">+34 696 321 225</a></div>
-        <div class="contact-line"><strong>Ubicación:</strong> Valencia, España</div>
-
-        <div class="socials">
-          <a href="https://github.com/danicp22" target="_blank" rel="noopener"><img src="github.png" alt="GitHub"></a>
-          <a href="https://www.linkedin.com/in/daniel-calve-pardo-6a0a71383/" target="_blank" rel="noopener"><img src="linkedin.png" alt="LinkedIn"></a>
+        <div class="direct">
+          <button class="reveal" data-delay="2" data-mail="danielcalvepardo@hotmail.com" data-hover>
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+            <span><small>Email · clic para copiar</small><span class="v">danielcalvepardo@<wbr>hotmail.com</span></span>
+            <span class="arrow">⧉</span>
+          </button>
+          <a href="tel:+34696321225" class="reveal" data-delay="3">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span>
+            <span><small>Teléfono</small><span class="v">+34 696 321 225</span></span>
+            <span class="arrow">↗</span>
+          </a>
+          <a href="https://www.linkedin.com/in/daniel-calve-pardo-6a0a71383/" target="_blank" rel="noopener" class="reveal" data-delay="3">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2ZM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2ZM7.1 20.5H3.5V9h3.6v11.5Z"/></svg></span>
+            <span><small>LinkedIn</small><span class="v">Daniel Calvé Pardo</span></span>
+            <span class="arrow">↗</span>
+          </a>
+          <a href="https://github.com/danicp22" target="_blank" rel="noopener" class="reveal" data-delay="4">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg></span>
+            <span><small>GitHub</small><span class="v">@danicp22</span></span>
+            <span class="arrow">↗</span>
+          </a>
         </div>
       </div>
-    </aside>
-  </div>
 
+      <div class="form-card reveal" data-delay="2">
+        <h2>Escríbeme aquí</h2>
+        <p>Rellena el formulario y te contesto por email.</p>
+
+        <!--
+          CÓMO ACTIVAR EL ENVÍO REAL (2 minutos, gratis):
+          1. Crea una cuenta en https://formspree.io y un formulario nuevo.
+          2. Copia tu ID (algo como "xyzabcd") y pégalo abajo en FORMSPREE_ID.
+          Mientras esté vacío, el botón abre el correo del visitante con el mensaje ya escrito.
+        -->
+        <form id="contactForm" novalidate>
+          <div>
+            <div class="chips-label">Me escribes por…</div>
+            <div class="chips">
+              <input type="radio" name="motivo" id="m1" value="Prácticas" checked><label for="m1">Prácticas</label>
+              <input type="radio" name="motivo" id="m2" value="Una web para mi negocio"><label for="m2">Una web</label>
+              <input type="radio" name="motivo" id="m3" value="Colaborar en un proyecto"><label for="m3">Colaborar</label>
+              <input type="radio" name="motivo" id="m4" value="Otra cosa"><label for="m4">Otra cosa</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field"><input id="name" name="name" type="text" placeholder=" " required autocomplete="name"><label for="name">Nombre</label></div>
+            <div class="field"><input id="email" name="email" type="email" placeholder=" " required autocomplete="email"><label for="email">Email</label></div>
+          </div>
+          <div class="field"><textarea id="message" name="message" placeholder=" " required></textarea><label for="message">Tu mensaje</label></div>
+          <button class="btn btn-primary send magnetic" id="sendBtn" type="submit" data-hover>
+            Enviar mensaje
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg>
+          </button>
+          <div class="msg" id="formMsg" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>© <span id="year">2026</span> Daniel Calvé Pardo · Valencia</p>
+      <a href="index.html" class="to-top" data-hover>← Volver al portafolio</a>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">Email copiado ✓</div>
+
+  <script src="assets/main.js"></script>
   <script>
-    // Pequeña lógica para mostrar feedback al usuario y permitir fallback mailto
-    (function(){
+    (() => {
+      const FORMSPREE_ID = ''; // ← pega aquí tu ID de Formspree
+      const TO = 'danielcalvepardo@hotmail.com';
       const form = document.getElementById('contactForm');
-      const sendBtn = document.getElementById('sendBtn');
-      const success = document.getElementById('success');
-      const error = document.getElementById('error');
+      const btn = document.getElementById('sendBtn');
+      const msg = document.getElementById('formMsg');
+      const say = (text, ok) => { msg.textContent = text; msg.className = 'msg ' + (ok ? 'ok' : 'err'); };
 
-      form.addEventListener('submit', async function(e){
+      form.addEventListener('submit', async e => {
         e.preventDefault();
-        sendBtn.disabled = true;
-        success.style.display = 'none'; error.style.display = 'none';
+        if (!form.checkValidity()) { say('Rellena tu nombre, un email válido y el mensaje.', false); form.reportValidity(); return; }
+        const data = Object.fromEntries(new FormData(form));
 
-        // Intenta enviar por fetch (Formspree acepta POSTS JSON si configuras endpoint)
-        try{
-          const formData = new FormData(form);
-          const json = Object.fromEntries(formData.entries());
-
-          // ENDPOINT: si quieres usar Formspree con fetch, reemplaza la URL por la de tu formspree
-          const endpoint = form.action;
-
-          const res = await fetch(endpoint, {
-            method: 'POST',
-            headers: {'Accept': 'application/json','Content-Type':'application/json'},
-            body: JSON.stringify(json)
-          });
-
-          if(res.ok){
-            success.style.display = 'block';
-            form.reset();
-          } else {
-            // si el endpoint no acepta JSON, intenta fallback con mailto
-            throw new Error('No aceptado');
-          }
-        }catch(err){
-          // Fallback: abrir cliente de correo con mailto (limitado por longitud y formato)
-          const name = encodeURIComponent(document.getElementById('name').value || '');
-          const email = encodeURIComponent(document.getElementById('email').value || '');
-          const subject = encodeURIComponent(document.getElementById('subject').value || '');
-          const message = encodeURIComponent(document.getElementById('message').value || '');
-
-          // Construye mailto hacia tu email
-          const mailto = `mailto:danielcalvepardo@hotmail.com?subject=${subject}&body=${message}%0A%0ADe:%20${name}%20(${email})`;
-          window.location.href = mailto;
-
-          // muestra mensaje de error si el mailto no funciona
-          setTimeout(()=>{ error.style.display = 'block'; }, 500);
-        } finally {
-          sendBtn.disabled = false;
+        if (!FORMSPREE_ID) {
+          const subject = encodeURIComponent(`${data.motivo} · ${data.name}`);
+          const body = encodeURIComponent(`${data.message}\n\n${data.name} (${data.email})`);
+          location.href = `mailto:${TO}?subject=${subject}&body=${body}`;
+          say('Se ha abierto tu correo con el mensaje listo. Solo tienes que darle a enviar.', true);
+          return;
         }
+
+        btn.disabled = true;
+        try {
+          const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+            method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          if (!res.ok) throw new Error();
+          form.reset(); say('¡Mensaje enviado! Te respondo pronto.', true);
+        } catch {
+          say(`No se ha podido enviar. Escríbeme directamente a ${TO}.`, false);
+        } finally { btn.disabled = false; }
       });
     })();
   </script>
-  
-  <!-- Flecha volver al inicio -->
-  <a href="index.html" class="back-home">
-    <button><img src="flecha.png" alt="Volver al inicio"></button>
-  </a>
-
-  <style>
-    .back-home{
-      position:fixed;
-      bottom:20px;
-      left:20px;
-    }
-    .back-home button{
-      background-color:transparent;
-      border:none;
-      cursor:pointer;
-    }
-    .back-home img{
-      width:80px;
-      height:80px;
-    }
-    .back-home button:hover{
-      box-shadow:2px 2px 10px #00e0c2;
-      border-radius:50%;
-    }
-  </style>
 </body>
 </html>
