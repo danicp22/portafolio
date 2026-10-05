@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/style.css?v=3">
   <style>
     .page { position: relative; z-index: 2; min-height: 100svh; padding: 140px 0 40px; }
     .grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 64px; align-items: start; }
@@ -70,6 +70,7 @@
     .chips input:checked + label { background: var(--text); color: #07070b; border-color: var(--text); transform: scale(1.04); }
     .chips input:focus-visible + label { box-shadow: 0 0 0 3px rgba(129,140,248,.5); }
     .chips-label { font: 500 11px/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .hp { display: none !important; }
     .send { justify-content: center; width: 100%; margin-top: 6px; }
     .send:disabled { opacity: .6; pointer-events: none; }
     .msg { display: none; font-size: 14px; padding: 14px 16px; border-radius: 12px; }
@@ -145,12 +146,14 @@
         <p>Rellena el formulario y te contesto por email.</p>
 
         <!--
-          CÓMO ACTIVAR EL ENVÍO REAL (2 minutos, gratis):
-          1. Crea una cuenta en https://formspree.io y un formulario nuevo.
-          2. Copia tu ID (algo como "xyzabcd") y pégalo abajo en FORMSPREE_ID.
-          Mientras esté vacío, el botón abre el correo del visitante con el mensaje ya escrito.
+          CÓMO ACTIVAR EL ENVÍO DIRECTO (gratis, 2 minutos):
+          1. Entra en https://web3forms.com, escribe tu email y pulsa "Create Access Key".
+          2. Te llega la clave por correo (algo como "a1b2c3d4-...").
+          3. Pégala abajo en ACCESS_KEY, sube los cambios y listo: los mensajes te llegan al correo.
+          Mientras ACCESS_KEY esté vacío, el botón abre el correo del visitante con el mensaje ya escrito.
         -->
         <form id="contactForm" novalidate>
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div>
             <div class="chips-label">Me escribes por…</div>
             <div class="chips">
@@ -185,22 +188,24 @@
 
   <div class="toast" id="toast">Email copiado ✓</div>
 
-  <script src="assets/main.js"></script>
+  <script src="assets/main.js?v=3"></script>
   <script>
     (() => {
-      const FORMSPREE_ID = ''; // ← pega aquí tu ID de Formspree
+      const ACCESS_KEY = 'd89dc97d-4ea8-4568-803d-11bf8d4776fb'; // ← pega aquí tu clave de Web3Forms
       const TO = 'danielcalvepardo@hotmail.com';
       const form = document.getElementById('contactForm');
       const btn = document.getElementById('sendBtn');
       const msg = document.getElementById('formMsg');
+      const label = btn.firstChild.textContent;
       const say = (text, ok) => { msg.textContent = text; msg.className = 'msg ' + (ok ? 'ok' : 'err'); };
 
       form.addEventListener('submit', async e => {
         e.preventDefault();
         if (!form.checkValidity()) { say('Rellena tu nombre, un email válido y el mensaje.', false); form.reportValidity(); return; }
         const data = Object.fromEntries(new FormData(form));
+        if (data.botcheck) return; // bot
 
-        if (!FORMSPREE_ID) {
+        if (!ACCESS_KEY) {
           const subject = encodeURIComponent(`${data.motivo} · ${data.name}`);
           const body = encodeURIComponent(`${data.message}\n\n${data.name} (${data.email})`);
           location.href = `mailto:${TO}?subject=${subject}&body=${body}`;
@@ -208,17 +213,27 @@
           return;
         }
 
-        btn.disabled = true;
+        btn.disabled = true; btn.firstChild.textContent = 'Enviando… ';
         try {
-          const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-            method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+              access_key: ACCESS_KEY,
+              subject: `Portafolio · ${data.motivo} · ${data.name}`,
+              from_name: 'Portafolio de Daniel Calvé',
+              name: data.name,
+              email: data.email,
+              motivo: data.motivo,
+              message: data.message
+            })
           });
-          if (!res.ok) throw new Error();
+          const json = await res.json().catch(() => ({}));
+          if (!res.ok || !json.success) throw new Error(json.message);
           form.reset(); say('¡Mensaje enviado! Te respondo pronto.', true);
         } catch {
           say(`No se ha podido enviar. Escríbeme directamente a ${TO}.`, false);
-        } finally { btn.disabled = false; }
+        } finally { btn.disabled = false; btn.firstChild.textContent = label; }
       });
     })();
   </script>
