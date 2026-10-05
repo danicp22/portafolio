@@ -17,10 +17,11 @@
     if (ring && dot) {
       document.body.classList.add('has-cursor');
       let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
+      let hidden = false;
       addEventListener('mousemove', e => {
         mx = e.clientX; my = e.clientY;
         dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
-        ring.style.opacity = dot.style.opacity = 1;
+        ring.style.opacity = hidden ? 0 : 1;
       });
       document.addEventListener('mouseleave', () => { ring.style.opacity = dot.style.opacity = 0; });
       (function loop() {
@@ -30,13 +31,17 @@
         requestAnimationFrame(loop);
       })();
       document.addEventListener('mouseover', e => {
-        const v = e.target.closest('[data-view]');
-        const h = e.target.closest('a, button, [data-hover], input, textarea');
+        // Sobre cajas de texto: se oculta el cursor animado y se ve el cursor normal de escribir
+        hidden = !!e.target.closest('input, textarea, select, .field');
+        const v = !hidden && e.target.closest('[data-view]');
+        const h = !hidden && e.target.closest('a, button, label, [data-hover]');
         ring.classList.toggle('is-view', !!v);
         ring.classList.toggle('is-hover', !v && !!h);
-        dot.style.opacity = v || h ? 0 : 1;
+        ring.style.opacity = hidden ? 0 : 1;
+        dot.style.opacity = hidden || v || h ? 0 : 1;
         if (label) label.classList.toggle('show', !!v);
       });
+
     }
   }
 
