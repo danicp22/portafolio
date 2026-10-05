@@ -207,18 +207,29 @@
     glowEls.forEach(el => io.observe(el));
   }
 
-  /* ---------- Tarjetas de proyecto apiladas + progreso de la trayectoria ---------- */
+  /* ---------- Tarjetas de proyecto apiladas (cascada) + progreso de la trayectoria ---------- */
   const cards = $$('.proj');
   const tl = $('#timeline');
+  const tops = [];
+  // Cada tarjeta se queda pegada un poco más abajo que la anterior (efecto cascada).
+  // Si una tarjeta es más alta que la pantalla, se pega por abajo para que se vea entera.
+  const layoutStack = () => {
+    const base = innerWidth <= 860 ? 74 : 96, step = innerWidth <= 860 ? 12 : 16;
+    const maxH = Math.max(...cards.map(c => c.offsetHeight));
+    const first = Math.min(base, innerHeight - maxH - 12 - (cards.length - 1) * step);
+    cards.forEach((c, i) => {
+      tops[i] = first + i * step; c.style.setProperty('--top', `${tops[i]}px`);
+    });
+  };
   const onScroll = () => {
-    if (cards.length && innerWidth > 1000 && !reduce) {
+    if (cards.length && !reduce) {
       cards.forEach((c, i) => {
         const next = cards[i + 1];
         if (!next) { c.style.transform = ''; c.style.filter = ''; return; }
         const r = next.getBoundingClientRect();
-        const p = Math.min(1, Math.max(0, 1 - (r.top - 96) / (innerHeight * 0.8)));
+        const p = Math.min(1, Math.max(0, 1 - (r.top - tops[i + 1]) / (innerHeight * 0.8)));
         c.style.transform = `scale(${1 - p * 0.06})`;
-        c.style.filter = `brightness(${1 - p * 0.45})`;
+        c.style.filter = `brightness(${1 - p * 0.5})`;
       });
     }
     if (tl) {
@@ -227,11 +238,53 @@
       tl.style.setProperty('--p', `${p * 100}%`);
     }
   };
-  addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll); onScroll();
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', () => { layoutStack(); onScroll(); });
+  layoutStack(); onScroll();
+  document.fonts?.ready.then(() => { layoutStack(); onScroll(); });
+  addEventListener('load', () => { layoutStack(); onScroll(); });
 
   /* ---------- Letras que saltan en el "¿Hablamos?" ---------- */
   const big = $('#bigCta');
   if (big) big.innerHTML = [...big.textContent].map(ch => `<span>${ch}</span>`).join('');
+
+  /* ---------- Formulario de contacto (Web3Forms) ----------
+     Los mensajes llegan a danielcalvepardo@hotmail.com.
+     Clave de https://web3forms.com (no es secreta, va en el código). */
+  const ACCESS_KEY = 'd89dc97d-4ea8-4568-803d-11bf8d4776fb';
+  const MAIL_TO = 'danielcalvepardo@hotmail.com';
+  $$('form[data-contact]').forEach(form => {
+    const btn = $('.send', form), label = $('.send-label', form), msg = $('.msg', form);
+    const say = (text, ok) => { msg.textContent = text; msg.className = 'msg ' + (ok ? 'ok' : 'err'); };
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (!form.checkValidity()) { say('Rellena tu nombre, un email válido y el mensaje.', false); form.reportValidity(); return; }
+      const d = Object.fromEntries(new FormData(form));
+      if (d.botcheck) return;
+      if (!ACCESS_KEY) {
+        location.href = `mailto:${MAIL_TO}?subject=${encodeURIComponent(`${d.motivo} · ${d.name}`)}&body=${encodeURIComponent(`${d.message}\n\n${d.name} (${d.email})`)}`;
+        return;
+      }
+      btn.disabled = true; label.textContent = 'Enviando…';
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            access_key: ACCESS_KEY,
+            subject: `Portafolio · ${d.motivo} · ${d.name}`,
+            from_name: 'Portafolio de Daniel Calvé',
+            name: d.name, email: d.email, motivo: d.motivo, message: d.message
+          })
+        });
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok || !json.success) throw new Error(json.message);
+        form.reset(); say('¡Mensaje enviado! Te respondo lo antes posible.', true);
+      } catch {
+        say(`No se ha podido enviar. Escríbeme directamente a ${MAIL_TO}.`, false);
+      } finally { btn.disabled = false; label.textContent = 'Enviar mensaje'; }
+    });
+  });
 
   /* ---------- Copiar email ---------- */
   const toast = $('#toast');

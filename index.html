@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css?v=3">
+  <link rel="stylesheet" href="assets/style.css?v=5">
 
   <style>
     /* ================= HERO ================= */
@@ -106,7 +106,7 @@
     .stack { margin-top: 64px; }
     .proj {
       --pc: #ec4899;
-      position: sticky; top: 96px; margin-bottom: 40px;
+      position: sticky; top: var(--top, 96px); margin-bottom: 40px;
       min-height: min(640px, calc(100svh - 130px));
       display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 48px; align-items: center;
       padding: 48px; border-radius: 32px; overflow: hidden;
@@ -258,48 +258,45 @@
     .tl-badge { display: inline-block; margin-top: 14px; font: 500 12px/1 var(--f-mono); padding: 7px 11px; border-radius: 999px; border: 1px solid rgba(96,165,250,.35); color: #93c5fd; background: rgba(37,99,235,.1); }
 
     /* ================= CONTACTO ================= */
-    .contact { text-align: center; }
+    .contact-head { text-align: center; }
     .big-cta {
-      margin-top: 18px; font: 800 clamp(64px, 15vw, 220px)/0.85 var(--f-display); letter-spacing: -0.06em;
+      display: block; margin-top: 18px; font: 800 clamp(56px, 10vw, 150px)/0.9 var(--f-display); letter-spacing: -0.055em;
     }
-    .big-cta { display: inline-block; }
     .big-cta span { display: inline-block; transition: transform .45s var(--spring), color .3s; }
     .big-cta span:hover { transform: translateY(-14%) rotate(-6deg); color: #a78bfa; }
     .big-cta span:last-child { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .contact p.lead { margin: 26px auto 0; color: var(--soft); max-width: 520px; font-size: 18px; }
-    .mail-btn {
-      margin-top: 40px; display: inline-flex; align-items: center; gap: 16px;
-      font: 600 clamp(18px, 2.6vw, 30px)/1 var(--f-display); letter-spacing: -0.02em;
-      padding: 22px 30px; border-radius: 999px; border: 1px solid var(--line2); background: rgba(255,255,255,.03);
-      color: var(--text); cursor: pointer; transition: all .35s var(--spring);
-    }
-    .mail-btn:hover { background: var(--text); color: #07070b; transform: scale(1.03); }
-    .mail-btn .copy-ic {
-      display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%;
-      background: var(--grad); color: #07070b;
-    }
-    .mail-btn .copy-ic svg { width: 18px; height: 18px; }
-    .contact-links { margin-top: 26px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .contact-head .lead { margin: 22px auto 0; color: var(--soft); max-width: 560px; font-size: 18px; }
+    .contact-grid { margin-top: 56px; display: grid; grid-template-columns: 1.25fr 1fr; gap: 20px; align-items: start; }
+    .contact-side { padding: 32px 4px 0; }
+    .contact-side .direct { margin-top: 22px; }
 
     /* ================= RESPONSIVE ================= */
     @media (max-width: 1000px) {
-      .proj { grid-template-columns: 1fr; padding: 36px; gap: 36px; min-height: 0; position: relative; top: 0; }
+      .proj { grid-template-columns: 1fr; padding: 36px; gap: 32px; min-height: 0; }
       .mock { transform: none; }
       .t-intro { grid-column: span 6; }
       .t-now { grid-column: span 6; }
       .t-stack, .t-lang { grid-column: span 6; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-side { padding: 8px 0 0; }
     }
     @media (max-width: 860px) {
       .hero { padding-top: 110px; }
       .hero-name { font-size: 23vw; }
       #field { opacity: .45; }
-      .mail-btn { font-size: 17px; max-width: 100%; }
       .hero-row { grid-template-columns: 1fr; gap: 24px; margin-top: 28px; }
       .stats { grid-template-columns: repeat(2, 1fr); margin-top: 48px; }
       .stat:nth-child(3) { padding-left: 0; border-left: 0; }
       .stat { padding-bottom: 20px; }
       .scroll-hint { display: none; }
-      .proj { padding: 24px; border-radius: 24px; }
+      .proj { padding: 22px; border-radius: 24px; margin-bottom: 28px; gap: 22px; }
+      .proj h3 { font-size: 40px; margin-top: 12px; }
+      .proj-desc { font-size: 15px; margin-top: 12px; }
+      .proj-feats { margin-top: 14px; gap: 7px; }
+      .proj-feats li { font-size: 14px; }
+      .proj-foot { margin-top: 20px; gap: 12px; }
+      .proj-foot .btn { padding: 13px 20px; font-size: 14px; }
+      .tag { padding: 7px 9px; font-size: 11px; }
       .t-intro { grid-template-columns: 1fr; text-align: left; gap: 24px; }
       .avatar { width: 130px; height: 130px; }
       .avatar .wave { width: 40px; height: 40px; font-size: 20px; }
@@ -310,7 +307,6 @@
       .tl-body { padding-left: 0; }
       .sg { grid-template-columns: 1fr; gap: 8px; }
       .sg > span { padding-top: 0; }
-      .mail-btn { padding: 16px 18px 16px 22px; gap: 12px; }
     }
   </style>
 </head>
@@ -617,32 +613,72 @@
     <!-- ============ CONTACTO ============ -->
     <section class="section contact" id="contacto" data-glow="#2563eb">
       <div class="wrap">
-        <span class="eyebrow reveal">04 · Contacto</span>
-        <h2 class="big-cta reveal" data-delay="1" id="bigCta">¿Hablamos?</h2>
-        <p class="lead reveal" data-delay="2">Estoy disponible para trabajar, ya sea en un empleo o en prácticas. Si tienes un puesto, un proyecto o solo quieres saludar, escríbeme.</p>
+        <div class="contact-head">
+          <span class="eyebrow reveal">04 · Contacto</span>
+          <h2 class="big-cta reveal" data-delay="1" id="bigCta">¿Hablamos?</h2>
+          <p class="lead reveal" data-delay="2">Estoy disponible para trabajar, en un empleo o en prácticas. Escríbeme desde aquí o usa el contacto que prefieras.</p>
+        </div>
 
-        <button class="mail-btn reveal magnetic" data-delay="3" id="copyMail" data-hover data-mail="danielcalvepardo@hotmail.com">
-          <span>danielcalvepardo@<wbr>hotmail.com</span>
-          <span class="copy-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></span>
-        </button>
+        <div class="contact-grid">
+          <div class="form-card reveal">
+            <h3 class="card-title"><span class="num">1</span> Mándame un mensaje</h3>
+            <p class="card-sub">Rellénalo y me llega al correo al momento.</p>
+            <form class="cform" data-contact novalidate>
+            <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div>
+              <div class="choice-label">Me escribes por…</div>
+              <div class="choice">
+                <input type="radio" name="motivo" id="c-m0" value="Oferta de trabajo" checked><label for="c-m0">Oferta de trabajo</label>
+                <input type="radio" name="motivo" id="c-m1" value="Prácticas"><label for="c-m1">Prácticas</label>
+                <input type="radio" name="motivo" id="c-m2" value="Una web para mi negocio"><label for="c-m2">Una web</label>
+                <input type="radio" name="motivo" id="c-m3" value="Otra cosa"><label for="c-m3">Otra cosa</label>
+              </div>
+            </div>
+            <div class="frow">
+              <div class="field"><input id="c-name" name="name" type="text" placeholder=" " required autocomplete="name"><label for="c-name">Tu nombre</label></div>
+              <div class="field"><input id="c-email" name="email" type="email" placeholder=" " required autocomplete="email"><label for="c-email">Tu email (para responderte)</label></div>
+            </div>
+            <div class="field"><textarea id="c-message" name="message" placeholder=" " required></textarea><label for="c-message">Tu mensaje</label></div>
+            <button class="btn btn-primary send" type="submit" data-hover>
+              <span class="send-label">Enviar mensaje</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg>
+            </button>
+            <p class="form-note">El mensaje me llega directamente al correo.</p>
+            <div class="msg" role="status" aria-live="polite"></div>
+          </form>
+          </div>
 
-        <div class="contact-links reveal" data-delay="4">
-          <a href="tel:+34696321225" class="btn btn-ghost magnetic" data-hover>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
-            696 321 225
-          </a>
-          <a href="https://www.linkedin.com/in/daniel-calve-pardo-6a0a71383/" target="_blank" rel="noopener" class="btn btn-ghost magnetic" data-hover>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2ZM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2ZM7.1 20.5H3.5V9h3.6v11.5ZM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0Z"/></svg>
-            LinkedIn
-          </a>
-          <a href="https://github.com/danicp22" target="_blank" rel="noopener" class="btn btn-ghost magnetic" data-hover>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg>
-            GitHub
-          </a>
-          <a href="contacto.html" class="btn btn-ghost magnetic" data-hover>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg>
-            Formulario
-          </a>
+          <div class="contact-side reveal" data-delay="1">
+            <h3 class="card-title"><span class="num">2</span> O contáctame directamente</h3>
+            <p class="card-sub">Por email, teléfono o redes.</p>
+            <div class="direct">
+            <button type="button" data-mail="danielcalvepardo@hotmail.com">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+              <span><small>Email</small><span class="v">danielcalvepardo@<wbr>hotmail.com</span></span>
+              <span class="act">Copiar</span>
+            </button>
+            <a href="tel:+34696321225">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span>
+              <span><small>Teléfono</small><span class="v">696 321 225</span></span>
+              <span class="act">Llamar</span>
+            </a>
+            <a href="https://www.linkedin.com/in/daniel-calve-pardo-6a0a71383/" target="_blank" rel="noopener">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2ZM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2ZM7.1 20.5H3.5V9h3.6v11.5Z"/></svg></span>
+              <span><small>LinkedIn</small><span class="v">Daniel Calvé Pardo</span></span>
+              <span class="act">Abrir ↗</span>
+            </a>
+            <a href="https://github.com/danicp22" target="_blank" rel="noopener">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg></span>
+              <span><small>GitHub</small><span class="v">@danicp22</span></span>
+              <span class="act">Abrir ↗</span>
+            </a>
+            <a href="assets/CV_Daniel_Calve_Pardo.pdf" download>
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15l3 3 3-3"/></svg></span>
+              <span><small>Currículum</small><span class="v">CV en PDF</span></span>
+              <span class="act">Descargar</span>
+            </a>
+          </div>
+          </div>
         </div>
       </div>
     </section>
@@ -657,6 +693,6 @@
 
   <div class="toast" id="toast">Email copiado ✓</div>
 
-  <script src="assets/main.js?v=3"></script>
+  <script src="assets/main.js?v=5"></script>
 </body>
 </html>

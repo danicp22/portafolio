@@ -10,78 +10,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css?v=3">
+  <link rel="stylesheet" href="assets/style.css?v=5">
   <style>
     .page { position: relative; z-index: 2; min-height: 100svh; padding: 140px 0 40px; }
     .grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 64px; align-items: start; }
     .title { font: 800 clamp(52px, 8vw, 116px)/0.9 var(--f-display); letter-spacing: -0.05em; margin-top: 18px; }
     .lead { margin-top: 24px; color: var(--soft); font-size: 18px; max-width: 440px; }
-
-    .direct { margin-top: 40px; display: grid; gap: 10px; max-width: 440px; }
-    .direct a, .direct button {
-      display: flex; align-items: center; gap: 16px; text-align: left; width: 100%;
-      padding: 18px 20px; border-radius: 18px; text-decoration: none; color: var(--text);
-      background: rgba(255,255,255,.03); border: 1px solid var(--line); font: inherit;
-      transition: all .35s var(--spring); cursor: pointer;
-    }
-    .direct a:hover, .direct button:hover { background: rgba(255,255,255,.07); border-color: var(--line2); transform: translateX(6px); }
-    .direct .ic { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; flex: none; background: var(--grad); color: #07070b; }
-    .direct .ic svg { width: 20px; height: 20px; }
-    .direct small { display: block; font: 500 11px/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-    .direct span.v { font-size: 16px; }
-    .direct .arrow { margin-left: auto; color: var(--muted); transition: transform .3s; }
-    .direct a:hover .arrow, .direct button:hover .arrow { transform: translate(3px, -3px); color: var(--text); }
-
-    .form-card {
-      position: relative; padding: 36px; border-radius: 28px; overflow: hidden;
-      background: linear-gradient(180deg, var(--s1), var(--bg2)); border: 1px solid var(--line);
-    }
-    .form-card::before {
-      content: ''; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none;
-      background: linear-gradient(140deg, rgba(167,139,250,.6), transparent 35%, transparent 65%, rgba(34,211,238,.5));
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
-    }
-    .form-card h2 { font: 700 26px/1.1 var(--f-display); letter-spacing: -0.02em; }
-    .form-card > p { color: var(--muted); margin-top: 6px; font-size: 14px; }
-    form { margin-top: 26px; display: grid; gap: 14px; }
-    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .field { position: relative; }
-    .field input, .field textarea {
-      width: 100%; font: 400 16px/1.4 var(--f-body); color: var(--text);
-      background: rgba(0,0,0,.25); border: 1px solid var(--line2); border-radius: 14px;
-      padding: 24px 16px 10px; outline: none; transition: border-color .25s, box-shadow .25s, background .25s;
-    }
-    .field textarea { min-height: 150px; resize: vertical; }
-    .field label {
-      position: absolute; left: 17px; top: 17px; font-size: 15px; color: var(--muted); pointer-events: none;
-      transition: all .25s var(--ease);
-    }
-    .field input:focus, .field textarea:focus { border-color: #818cf8; box-shadow: 0 0 0 4px rgba(129,140,248,.15); background: rgba(0,0,0,.35); }
-    .field input:focus + label, .field input:not(:placeholder-shown) + label,
-    .field textarea:focus + label, .field textarea:not(:placeholder-shown) + label {
-      top: 8px; font-size: 11px; letter-spacing: .06em; color: #a5b4fc;
-    }
-    .chips { display: flex; gap: 8px; flex-wrap: wrap; }
-    .chips input { position: absolute; opacity: 0; pointer-events: none; }
-    .chips label {
-      font-size: 14px; padding: 9px 15px; border-radius: 999px; border: 1px solid var(--line2); color: var(--soft);
-      cursor: pointer; transition: all .25s var(--spring);
-    }
-    .chips input:checked + label { background: var(--text); color: #07070b; border-color: var(--text); transform: scale(1.04); }
-    .chips input:focus-visible + label { box-shadow: 0 0 0 3px rgba(129,140,248,.5); }
-    .chips-label { font: 500 11px/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
-    .hp { display: none !important; }
-    .send { justify-content: center; width: 100%; margin-top: 6px; }
-    .send:disabled { opacity: .6; pointer-events: none; }
-    .msg { display: none; font-size: 14px; padding: 14px 16px; border-radius: 12px; }
-    .msg.ok { display: block; background: rgba(184,255,92,.1); color: var(--lime); border: 1px solid rgba(184,255,92,.25); }
-    .msg.err { display: block; background: rgba(255,90,90,.08); color: #ffa3a3; border: 1px solid rgba(255,90,90,.25); }
-
+    .grid .direct { margin-top: 40px; max-width: 460px; }
     @media (max-width: 900px) {
       .page { padding-top: 110px; }
       .grid { grid-template-columns: 1fr; gap: 48px; }
-      .form-card { padding: 24px; }
-      .row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -118,63 +56,60 @@
         <p class="lead reveal" data-delay="2">¿Una oferta de trabajo, prácticas o una web para tu negocio? Te respondo lo antes posible.</p>
 
         <div class="direct">
-          <button class="reveal" data-delay="2" data-mail="danielcalvepardo@hotmail.com" data-hover>
-            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
-            <span><small>Email · clic para copiar</small><span class="v">danielcalvepardo@<wbr>hotmail.com</span></span>
-            <span class="arrow">⧉</span>
-          </button>
-          <a href="tel:+34696321225" class="reveal" data-delay="3">
-            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span>
-            <span><small>Teléfono</small><span class="v">+34 696 321 225</span></span>
-            <span class="arrow">↗</span>
-          </a>
-          <a href="https://www.linkedin.com/in/daniel-calve-pardo-6a0a71383/" target="_blank" rel="noopener" class="reveal" data-delay="3">
-            <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2ZM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2ZM7.1 20.5H3.5V9h3.6v11.5Z"/></svg></span>
-            <span><small>LinkedIn</small><span class="v">Daniel Calvé Pardo</span></span>
-            <span class="arrow">↗</span>
-          </a>
-          <a href="https://github.com/danicp22" target="_blank" rel="noopener" class="reveal" data-delay="4">
-            <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg></span>
-            <span><small>GitHub</small><span class="v">@danicp22</span></span>
-            <span class="arrow">↗</span>
-          </a>
-        </div>
+            <button type="button" data-mail="danielcalvepardo@hotmail.com">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+              <span><small>Email</small><span class="v">danielcalvepardo@<wbr>hotmail.com</span></span>
+              <span class="act">Copiar</span>
+            </button>
+            <a href="tel:+34696321225">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span>
+              <span><small>Teléfono</small><span class="v">696 321 225</span></span>
+              <span class="act">Llamar</span>
+            </a>
+            <a href="https://www.linkedin.com/in/daniel-calve-pardo-6a0a71383/" target="_blank" rel="noopener">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2ZM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2ZM7.1 20.5H3.5V9h3.6v11.5Z"/></svg></span>
+              <span><small>LinkedIn</small><span class="v">Daniel Calvé Pardo</span></span>
+              <span class="act">Abrir ↗</span>
+            </a>
+            <a href="https://github.com/danicp22" target="_blank" rel="noopener">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg></span>
+              <span><small>GitHub</small><span class="v">@danicp22</span></span>
+              <span class="act">Abrir ↗</span>
+            </a>
+            <a href="assets/CV_Daniel_Calve_Pardo.pdf" download>
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15l3 3 3-3"/></svg></span>
+              <span><small>Currículum</small><span class="v">CV en PDF</span></span>
+              <span class="act">Descargar</span>
+            </a>
+          </div>
       </div>
 
       <div class="form-card reveal" data-delay="2">
-        <h2>Escríbeme aquí</h2>
-        <p>Rellena el formulario y te contesto por email.</p>
-
-        <!--
-          CÓMO ACTIVAR EL ENVÍO DIRECTO (gratis, 2 minutos):
-          1. Entra en https://web3forms.com, escribe tu email y pulsa "Create Access Key".
-          2. Te llega la clave por correo (algo como "a1b2c3d4-...").
-          3. Pégala abajo en ACCESS_KEY, sube los cambios y listo: los mensajes te llegan al correo.
-          Mientras ACCESS_KEY esté vacío, el botón abre el correo del visitante con el mensaje ya escrito.
-        -->
-        <form id="contactForm" novalidate>
-          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <div>
-            <div class="chips-label">Me escribes por…</div>
-            <div class="chips">
-              <input type="radio" name="motivo" id="m0" value="Oferta de trabajo" checked><label for="m0">Oferta de trabajo</label>
-              <input type="radio" name="motivo" id="m1" value="Prácticas"><label for="m1">Prácticas</label>
-              <input type="radio" name="motivo" id="m2" value="Una web para mi negocio"><label for="m2">Una web</label>
-              <input type="radio" name="motivo" id="m3" value="Colaborar en un proyecto"><label for="m3">Colaborar</label>
-              <input type="radio" name="motivo" id="m4" value="Otra cosa"><label for="m4">Otra cosa</label>
+        <h2 class="card-title">Escríbeme aquí</h2>
+        <p class="card-sub">Rellénalo y me llega al correo al momento.</p>
+        <form class="cform" data-contact novalidate>
+            <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div>
+              <div class="choice-label">Me escribes por…</div>
+              <div class="choice">
+                <input type="radio" name="motivo" id="m0" value="Oferta de trabajo" checked><label for="m0">Oferta de trabajo</label>
+                <input type="radio" name="motivo" id="m1" value="Prácticas"><label for="m1">Prácticas</label>
+                <input type="radio" name="motivo" id="m2" value="Una web para mi negocio"><label for="m2">Una web</label>
+                <input type="radio" name="motivo" id="m3" value="Otra cosa"><label for="m3">Otra cosa</label>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="field"><input id="name" name="name" type="text" placeholder=" " required autocomplete="name"><label for="name">Nombre</label></div>
-            <div class="field"><input id="email" name="email" type="email" placeholder=" " required autocomplete="email"><label for="email">Email</label></div>
-          </div>
-          <div class="field"><textarea id="message" name="message" placeholder=" " required></textarea><label for="message">Tu mensaje</label></div>
-          <button class="btn btn-primary send magnetic" id="sendBtn" type="submit" data-hover>
-            Enviar mensaje
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg>
-          </button>
-          <div class="msg" id="formMsg" role="status" aria-live="polite"></div>
-        </form>
+            <div class="frow">
+              <div class="field"><input id="name" name="name" type="text" placeholder=" " required autocomplete="name"><label for="name">Tu nombre</label></div>
+              <div class="field"><input id="email" name="email" type="email" placeholder=" " required autocomplete="email"><label for="email">Tu email (para responderte)</label></div>
+            </div>
+            <div class="field"><textarea id="message" name="message" placeholder=" " required></textarea><label for="message">Tu mensaje</label></div>
+            <button class="btn btn-primary send" type="submit" data-hover>
+              <span class="send-label">Enviar mensaje</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg>
+            </button>
+            <p class="form-note">El mensaje me llega directamente al correo.</p>
+            <div class="msg" role="status" aria-live="polite"></div>
+          </form>
       </div>
     </div>
   </main>
@@ -188,54 +123,7 @@
 
   <div class="toast" id="toast">Email copiado ✓</div>
 
-  <script src="assets/main.js?v=3"></script>
-  <script>
-    (() => {
-      const ACCESS_KEY = 'd89dc97d-4ea8-4568-803d-11bf8d4776fb'; // ← pega aquí tu clave de Web3Forms
-      const TO = 'danielcalvepardo@hotmail.com';
-      const form = document.getElementById('contactForm');
-      const btn = document.getElementById('sendBtn');
-      const msg = document.getElementById('formMsg');
-      const label = btn.firstChild.textContent;
-      const say = (text, ok) => { msg.textContent = text; msg.className = 'msg ' + (ok ? 'ok' : 'err'); };
+  <script src="assets/main.js?v=5"></script>
 
-      form.addEventListener('submit', async e => {
-        e.preventDefault();
-        if (!form.checkValidity()) { say('Rellena tu nombre, un email válido y el mensaje.', false); form.reportValidity(); return; }
-        const data = Object.fromEntries(new FormData(form));
-        if (data.botcheck) return; // bot
-
-        if (!ACCESS_KEY) {
-          const subject = encodeURIComponent(`${data.motivo} · ${data.name}`);
-          const body = encodeURIComponent(`${data.message}\n\n${data.name} (${data.email})`);
-          location.href = `mailto:${TO}?subject=${subject}&body=${body}`;
-          say('Se ha abierto tu correo con el mensaje listo. Solo tienes que darle a enviar.', true);
-          return;
-        }
-
-        btn.disabled = true; btn.firstChild.textContent = 'Enviando… ';
-        try {
-          const res = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify({
-              access_key: ACCESS_KEY,
-              subject: `Portafolio · ${data.motivo} · ${data.name}`,
-              from_name: 'Portafolio de Daniel Calvé',
-              name: data.name,
-              email: data.email,
-              motivo: data.motivo,
-              message: data.message
-            })
-          });
-          const json = await res.json().catch(() => ({}));
-          if (!res.ok || !json.success) throw new Error(json.message);
-          form.reset(); say('¡Mensaje enviado! Te respondo pronto.', true);
-        } catch {
-          say(`No se ha podido enviar. Escríbeme directamente a ${TO}.`, false);
-        } finally { btn.disabled = false; btn.firstChild.textContent = label; }
-      });
-    })();
-  </script>
 </body>
 </html>
