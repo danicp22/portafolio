@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css?v=6">
+  <link rel="stylesheet" href="assets/style.css?v=7">
   <style>
     .page { position: relative; z-index: 2; padding: 110px 20px 60px; }
     .toolbar {
@@ -37,7 +37,7 @@
     .cv-head::before { width: 420px; height: 420px; right: -120px; top: -200px; }
     .cv-head::after { width: 300px; height: 300px; right: 180px; bottom: -220px; }
     .cv-head h2 { position: relative; font: 800 clamp(40px, 6vw, 64px)/0.95 var(--f-display); letter-spacing: -0.04em; }
-    .cv-head .role { position: relative; margin-top: 16px; font: 500 13px/1 var(--f-mono); letter-spacing: .35em; text-transform: uppercase; opacity: .85; }
+    .cv-head .role { position: relative; margin-top: 16px; font: 500 13px/1.4 var(--f-mono); letter-spacing: .22em; text-transform: uppercase; opacity: .85; }
     .cv-photo {
       position: absolute; z-index: 2; right: 56px; top: 110px; width: 190px; height: 190px; border-radius: 50%;
       border: 7px solid #fff; overflow: hidden; box-shadow: 0 20px 40px -10px rgba(40,20,120,.45); background: #eee;
@@ -77,7 +77,7 @@
     .cv-job { margin-top: 18px; border: 1px solid #e9e5fb; background: #fbfaff; border-radius: 14px; padding: 18px 22px; }
     .cv-job b { font-size: 16px; font-weight: 600; }
 
-    .cv-side { padding-top: 150px; }
+    .cv-side { padding-top: 140px; }
     .cv-side .cv-sec { margin-top: 34px; }
     .cv-side .cv-sec:first-child { margin-top: 0; }
     .cv-list { margin-top: 16px; display: grid; gap: 14px; }
@@ -90,6 +90,22 @@
     .cv-lang { margin-top: 16px; display: grid; gap: 12px; }
     .cv-lang b { display: block; font-size: 15px; font-weight: 600; }
     .cv-lang span { font-size: 14px; color: var(--ink3); }
+
+    .cv-proj { margin-top: 16px; display: grid; gap: 12px; }
+    .cv-proj-item { border: 1px solid #e9e5fb; background: #fbfaff; border-radius: 14px; padding: 14px 18px; }
+    .cv-proj-item .cv-row b { font-size: 15.5px; }
+    .cv-proj-item .url { font: 500 12px/1 var(--f-mono); color: var(--pb); text-decoration: none; }
+    .cv-proj-item p { color: var(--ink2); font-size: 14px; margin-top: 6px; line-height: 1.55; }
+    .cv-stack { margin-top: 8px; display: flex; gap: 5px; flex-wrap: wrap; }
+    .cv-stack span { font: 500 11px/1 var(--f-mono); color: #4c1d95; background: var(--pl); padding: 5px 8px; border-radius: 6px; }
+    .cv-bullets { margin-top: 8px; padding-left: 18px; color: var(--ink2); font-size: 14.5px; display: grid; gap: 4px; }
+    .cv-bullets li::marker { color: var(--pb); }
+    .cv-skill { margin-top: 14px; }
+    .cv-skill b { display: block; font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 7px; }
+    .cv-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .cv-tags span { font-size: 12.5px; color: #4c1d95; background: var(--pl); padding: 5px 9px; border-radius: 999px; }
+
+    .print-contact { display: none; }
 
     .hint { max-width: 860px; margin: 18px auto 0; text-align: center; color: var(--muted); font-size: 13px; }
 
@@ -108,6 +124,42 @@
       .page { padding: 0; }
       .paper { box-shadow: none; border-radius: 0; max-width: none; }
       * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .paper { width: 794px; }
+      .cv-head { padding: 28px 44px 24px; }
+      .cv-head h2 { font-size: 40px; }
+      .cv-head .role { margin-top: 10px; font-size: 11px; }
+      .print-contact { display: block; position: relative; margin-top: 14px; font: 500 11.5px/1.4 var(--f-body); opacity: .95; }
+      .cv-photo { top: 20px; right: 44px; width: 120px; height: 120px; border-width: 5px; }
+      .side-contact { display: none; }
+      .cv-body { padding: 18px 44px 12px; gap: 30px; grid-template-columns: 1fr 210px; }
+      .cv-side { padding-top: 0; }
+      .cv-sec, .cv-side .cv-sec, .cv-side .cv-sec:nth-child(2) { margin-top: 15px; }
+      .cv-side .cv-sec:nth-child(2) { margin-top: 0; }
+      .cv-sec h3 { font-size: 16px; gap: 9px; }
+      .cv-ic { width: 26px; height: 26px; } .cv-ic svg { width: 13px; height: 13px; }
+      .cv-summary { font-size: 12.5px; line-height: 1.55; margin-top: 10px !important; max-width: none; }
+      .cv-proj { gap: 7px; margin-top: 10px; }
+      .cv-proj-item { padding: 8px 12px; border-radius: 10px; }
+      .cv-proj-item .cv-row b { font-size: 13.5px; }
+      .cv-proj-item .url { font-size: 10.5px; }
+      .cv-proj-item p { font-size: 12px; margin-top: 3px; line-height: 1.45; }
+      .cv-stack { margin-top: 5px; } .cv-stack span { font-size: 9.5px; padding: 3px 6px; }
+      .cv-job { margin-top: 10px; padding: 10px 12px; border-radius: 10px; }
+      .cv-row b, .cv-job b { font-size: 13.5px; }
+      .pill { font-size: 10px; padding: 4px 9px; }
+      .cv-place { font-size: 12px; }
+      .cv-bullets { font-size: 12px; margin-top: 4px; gap: 2px; }
+      .cv-tl { margin-top: 10px; padding-left: 22px; }
+      .cv-tl-item { padding-bottom: 9px; }
+      .cv-tl-item::before { left: -22px; top: 4px; width: 10px; height: 10px; }
+      .cv-skill { margin-top: 10px; } .cv-skill b { font-size: 11.5px; margin-bottom: 5px; }
+      .cv-tags { gap: 4px; } .cv-tags span { font-size: 10.5px; padding: 3px 7px; }
+      .cv-lang { margin-top: 10px; gap: 7px; } .cv-lang b { font-size: 12.5px; } .cv-lang span { font-size: 11.5px; }
+      .cv-list { margin-top: 10px; gap: 8px; }
+      .cv-li .mini { width: 24px; height: 24px; } .cv-li .mini svg { width: 12px; height: 12px; }
+      .cv-li { align-items: center; }
+      .cv-li a, .cv-li span { font-size: 12px; line-height: 1.35; }
     }
   </style>
 </head>
@@ -157,68 +209,93 @@
     <article class="paper reveal">
       <header class="cv-head">
         <h2>Daniel<br>Calvé Pardo</h2>
-        <div class="role">Estudiante</div>
+        <div class="role">Técnico SMR · Desarrollador Web Junior</div>
+        <div class="print-contact">696 321 225 · danielcalvepardo@hotmail.com · danicp22.github.io/portafolio · Valencia</div>
       </header>
       <div class="cv-photo"><img src="assets/daniel.webp" alt="Foto de Daniel Calvé Pardo" width="340" height="340"></div>
 
       <div class="cv-body">
         <div>
-          <p class="cv-summary">Soy una persona dinámica, motivada por el aprendizaje continuo y el trabajo colaborativo. Me caracterizo por mi disposición para ayudar, resolver problemas y contribuir positivamente al equipo. Valoro el compromiso, la responsabilidad y la mejora constante en cada tarea que realizo.</p>
+          <section class="cv-sec">
+            <h3><span class="cv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>Perfil</h3>
+            <p class="cv-summary" style="margin-top:14px">Técnico en Sistemas Microinformáticos y Redes y estudiante de Desarrollo de Aplicaciones Web. Uno el soporte técnico (equipos, redes e incidencias) con el desarrollo web, y ya tengo tres webs reales funcionando para negocios de Valencia. Busco empleo o prácticas en un equipo donde aportar desde el primer día y seguir creciendo.</p>
+          </section>
 
-          <section class="cv-sec" style="margin-top:36px">
+          <section class="cv-sec">
+            <h3><span class="cv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>Proyectos</h3>
+            <div class="cv-proj">
+              <div class="cv-proj-item">
+                <div class="cv-row"><b>Niconuts</b><a class="url" href="https://niconuts.es" target="_blank" rel="noopener">niconuts.es</a></div>
+                <p>Tienda online de repostería con catálogo por categorías, carrito, cuentas de usuario y pedidos por WhatsApp.</p>
+                <div class="cv-stack"><span>PHP</span><span>MySQL</span><span>CSS</span></div>
+              </div>
+              <div class="cv-proj-item">
+                <div class="cv-row"><b>The Crib</b><a class="url" href="https://thecribstylo.com" target="_blank" rel="noopener">thecribstylo.com</a></div>
+                <p>Web de barbería y estética con carta de servicios, reserva online y contacto por WhatsApp.</p>
+                <div class="cv-stack"><span>PHP</span><span>MySQL</span><span>CSS</span></div>
+              </div>
+              <div class="cv-proj-item">
+                <div class="cv-row"><b>La Sabrosa Radio</b><a class="url" href="https://lasabrosaradio.es" target="_blank" rel="noopener">lasabrosaradio.es</a></div>
+                <p>Web de emisora online con reproductor en directo, programación, noticias y eventos.</p>
+                <div class="cv-stack"><span>PHP</span><span>MySQL</span><span>CSS</span></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="cv-sec">
+            <h3><span class="cv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span>Experiencia</h3>
+            <div class="cv-job">
+              <div class="cv-row"><b>Prácticas de soporte técnico y programación</b><span class="pill">380 h</span></div>
+              <div class="cv-place">Avanza</div>
+              <ul class="cv-bullets">
+                <li>Soporte a usuarios y resolución de incidencias de equipos y red.</li>
+                <li>Apoyo al equipo técnico en tareas de programación web.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="cv-sec">
             <h3><span class="cv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>Formación</h3>
             <div class="cv-tl">
+              <div class="cv-tl-item now">
+                <div class="cv-row"><b>Grado Superior en Desarrollo de Aplicaciones Web (DAW)</b><span class="pill">Cursando 1º</span></div>
+                <div class="cv-place">Ceac FP</div>
+              </div>
+              <div class="cv-tl-item">
+                <div class="cv-row"><b>Grado Medio en Sistemas Microinformáticos y Redes (SMR)</b><span class="pill">2023 – 2025</span></div>
+                <div class="cv-place">Centro FP Progresa</div>
+              </div>
               <div class="cv-tl-item">
                 <div class="cv-row"><b>Educación Secundaria Obligatoria</b><span class="pill">2023</span></div>
                 <div class="cv-place">Colegio Oller 2</div>
               </div>
-              <div class="cv-tl-item">
-                <div class="cv-row"><b>Grado medio SMR</b><span class="pill">2023 – 2025</span></div>
-                <div class="cv-place">Centro FP Progresa</div>
-                <div class="cv-note">Graduado en grado medio de Sistemas Microinformáticos y Redes</div>
-              </div>
-              <div class="cv-tl-item now">
-                <div class="cv-row"><b>Cursando 1º DAW</b><span class="pill">Actualidad</span></div>
-                <div class="cv-place">Ceac FP</div>
-                <div class="cv-note">Cursando actualmente el Grado Superior de Desarrollo de Aplicaciones Web</div>
-              </div>
-            </div>
-          </section>
-
-          <section class="cv-sec">
-            <h3><span class="cv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5Z"/></svg></span>Competencias personales y profesionales</h3>
-            <div class="cv-chips">
-              <span class="cv-chip">Experiencia en desarrollo de webs</span>
-              <span class="cv-chip">Alta capacidad de trabajo en equipo</span>
-              <span class="cv-chip">Buena eficacia en resolución de problemas</span>
-            </div>
-          </section>
-
-          <section class="cv-sec">
-            <h3><span class="cv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span>Experiencia profesional</h3>
-            <div class="cv-job">
-              <b>Prácticas profesionales</b>
-              <div class="cv-place">380 horas de prácticas en la empresa “Avanza”</div>
-              <div class="cv-note">Ayuda en tareas de soporte y programación</div>
             </div>
           </section>
         </div>
 
         <aside class="cv-side">
-          <section class="cv-sec">
-            <h3><span class="cv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>Contacto</h3>
+          <section class="cv-sec side-contact">
+            <h3><span class="cv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span>Contacto</h3>
             <div class="cv-list">
               <div class="cv-li"><span class="mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span><div><small>Móvil</small><a href="tel:+34696321225">696 321 225</a></div></div>
               <div class="cv-li"><span class="mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span><div><small>Correo</small><a href="mailto:danielcalvepardo@hotmail.com">danielcalvepardo<br>@hotmail.com</a></div></div>
-              <div class="cv-li"><span class="mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><div><small>Fecha de nacimiento</small><span>2007</span></div></div>
+              <div class="cv-li"><span class="mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span><div><small>Portafolio</small><a href="https://danicp22.github.io/portafolio/" target="_blank" rel="noopener">danicp22.github.io<br>/portafolio</a></div></div>
+              <div class="cv-li"><span class="mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><small>Ubicación</small><span>Valencia, España</span></div></div>
             </div>
+          </section>
+
+          <section class="cv-sec">
+            <h3><span class="cv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5Z"/></svg></span>Competencias</h3>
+            <div class="cv-skill"><b>Web</b><div class="cv-tags"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>PHP</span><span>Python</span><span>MySQL</span><span>Diseño responsive</span><span>Git y GitHub</span></div></div>
+            <div class="cv-skill"><b>Sistemas</b><div class="cv-tags"><span>Montaje y mantenimiento de equipos</span><span>Redes locales</span><span>Diagnóstico hardware y software</span><span>Soporte al usuario</span></div></div>
+            <div class="cv-skill"><b>Personales</b><div class="cv-tags"><span>Trabajo en equipo</span><span>Resolución de problemas</span><span>Aprendizaje rápido</span></div></div>
           </section>
 
           <section class="cv-sec">
             <h3><span class="cv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6"/></svg></span>Idiomas</h3>
             <div class="cv-lang">
               <div><b>Castellano</b><span>Nativo</span></div>
-              <div><b>Valenciano</b><span>Nivel medio (sin certificar)</span></div>
+              <div><b>Valenciano</b><span>Nivel medio</span></div>
             </div>
           </section>
 
@@ -233,7 +310,7 @@
       </div>
     </article>
 
-    <p class="hint">¿Prefieres el original? <a href="assets/CV_Daniel_Calve_Pardo.pdf" target="_blank" rel="noopener" style="color:var(--soft)">Ábrelo en PDF</a>.</p>
+    <p class="hint">¿Lo quieres en PDF? <a href="assets/CV_Daniel_Calve_Pardo.pdf" target="_blank" rel="noopener" style="color:var(--soft)">Ábrelo aquí</a>.</p>
   </main>
 
   <footer class="footer">
@@ -243,6 +320,6 @@
     </div>
   </footer>
 
-  <script src="assets/main.js?v=6"></script>
+  <script src="assets/main.js?v=7"></script>
 </body>
 </html>
