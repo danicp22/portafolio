@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css?v=7">
+  <link rel="stylesheet" href="assets/style.css?v=8">
   <style>
     .page { position: relative; z-index: 2; padding: 110px 20px 60px; }
     .toolbar {
@@ -139,7 +139,8 @@
       .cv-sec h3 { font-size: 16px; gap: 9px; }
       .cv-ic { width: 26px; height: 26px; } .cv-ic svg { width: 13px; height: 13px; }
       .cv-summary { font-size: 12.5px; line-height: 1.55; margin-top: 10px !important; max-width: none; }
-      .cv-proj { gap: 7px; margin-top: 10px; }
+      .cv-proj { gap: 7px; margin-top: 10px; grid-template-columns: 1fr 1fr; }
+      .cv-proj-item .cv-row { flex-direction: column; align-items: flex-start; gap: 2px; }
       .cv-proj-item { padding: 8px 12px; border-radius: 10px; }
       .cv-proj-item .cv-row b { font-size: 13.5px; }
       .cv-proj-item .url { font-size: 10.5px; }
@@ -158,7 +159,7 @@
       .cv-lang { margin-top: 10px; gap: 7px; } .cv-lang b { font-size: 12.5px; } .cv-lang span { font-size: 11.5px; }
       .cv-list { margin-top: 10px; gap: 8px; }
       .cv-li .mini { width: 24px; height: 24px; } .cv-li .mini svg { width: 12px; height: 12px; }
-      .cv-li { align-items: center; }
+      .cv-li { align-items: center; } .cv-li > div { line-height: 1.35; }
       .cv-li a, .cv-li span { font-size: 12px; line-height: 1.35; }
     }
   </style>
@@ -178,7 +179,7 @@
       <li><a href="contacto.html">Contacto</a></li>
     </ul>
     <div style="display:flex;gap:8px;align-items:center">
-      <a href="assets/CV_Daniel_Calve_Pardo.pdf" download class="nav-cta" data-hover>
+      <a href="assets/CV_Daniel_Calve_Pardo.pdf?v=3" download class="nav-cta" data-hover>
         PDF
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
       </a>
@@ -195,7 +196,7 @@
         <h1 style="margin-top:12px">Todo en <span class="grad-text">una hoja.</span></h1>
       </div>
       <div class="actions">
-        <a href="assets/CV_Daniel_Calve_Pardo.pdf" download class="btn btn-primary magnetic" data-hover>
+        <a href="assets/CV_Daniel_Calve_Pardo.pdf?v=3" download class="btn btn-primary magnetic" data-hover>
           Descargar PDF
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
         </a>
@@ -218,7 +219,7 @@
         <div>
           <section class="cv-sec">
             <h3><span class="cv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>Perfil</h3>
-            <p class="cv-summary" style="margin-top:14px">Técnico en Sistemas Microinformáticos y Redes y estudiante de Desarrollo de Aplicaciones Web. Uno el soporte técnico (equipos, redes e incidencias) con el desarrollo web, y ya tengo tres webs reales funcionando para negocios de Valencia. Busco empleo o prácticas en un equipo donde aportar desde el primer día y seguir creciendo.</p>
+            <p class="cv-summary" style="margin-top:14px">Técnico en Sistemas Microinformáticos y Redes y estudiante de Desarrollo de Aplicaciones Web. Uno el soporte técnico (equipos, redes e incidencias) con el desarrollo web, y ya tengo cuatro webs reales funcionando, tres de ellas para negocios de Valencia. Busco empleo o prácticas en un equipo donde aportar desde el primer día y seguir creciendo.</p>
           </section>
 
           <section class="cv-sec">
@@ -238,6 +239,11 @@
                 <div class="cv-row"><b>La Sabrosa Radio</b><a class="url" href="https://lasabrosaradio.es" target="_blank" rel="noopener">lasabrosaradio.es</a></div>
                 <p>Web de emisora online con reproductor en directo, programación, noticias y eventos.</p>
                 <div class="cv-stack"><span>PHP</span><span>MySQL</span><span>CSS</span></div>
+              </div>
+              <div class="cv-proj-item">
+                <div class="cv-row"><b>Facila</b><a class="url" href="https://facila.es" target="_blank" rel="noopener">facila.es</a></div>
+                <p>Web de 50 calculadoras y herramientas online gratuitas en español, en 8 categorías y pensada para atraer visitas desde Google.</p>
+                <div class="cv-stack"><span>PHP</span><span>JavaScript</span><span>CSS</span></div>
               </div>
             </div>
           </section>
@@ -310,7 +316,7 @@
       </div>
     </article>
 
-    <p class="hint">¿Lo quieres en PDF? <a href="assets/CV_Daniel_Calve_Pardo.pdf" target="_blank" rel="noopener" style="color:var(--soft)">Ábrelo aquí</a>.</p>
+    <p class="hint">¿Lo quieres en PDF? <a href="assets/CV_Daniel_Calve_Pardo.pdf?v=3" target="_blank" rel="noopener" style="color:var(--soft)">Ábrelo aquí</a>.</p>
   </main>
 
   <footer class="footer">
@@ -320,6 +326,6 @@
     </div>
   </footer>
 
-  <script src="assets/main.js?v=7"></script>
+  <script src="assets/main.js?v=8"></script>
 </body>
 </html>
