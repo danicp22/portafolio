@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Currículum · Daniel Calvé Pardo</title>
-  <meta name="description" content="Currículum de Daniel Calvé Pardo, estudiante de Desarrollo de Aplicaciones Web en Valencia.">
-  <meta name="theme-color" content="#07070b">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1'%3E%3Cstop offset='0' stop-color='%23a78bfa'/%3E%3Cstop offset='.5' stop-color='%2360a5fa'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='900' font-size='26' text-anchor='middle' fill='%2307070b'%3EDC%3C/text%3E%3C/svg%3E">
+  <meta name="description" content="Currículum de Daniel Calvé Pardo, técnico SMR y desarrollador web junior en Valencia.">
+  <meta name="theme-color" content="#f1ece2">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23151413'/%3E%3Ctext x='32' y='44' font-family='Arial' font-weight='700' font-size='32' text-anchor='middle' fill='%23ff5a1f'%3ED%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css?v=8">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css?v=10">
   <style>
-    .page { position: relative; z-index: 2; padding: 110px 20px 60px; }
+    .page { position: relative; padding: 56px 20px 100px; }
     .toolbar {
       max-width: 860px; margin: 0 auto 24px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
     }
@@ -22,25 +22,23 @@
 
     /* ---------- Hoja del CV ---------- */
     .paper {
-      --ink: #1a1830; --ink2: #4a4766; --ink3: #7c7998; --pv: #5b21b6; --pb: #2563eb; --pl: #f3f0ff;
+      --ink: #1c1b19; --ink2: #4a4843; --ink3: #7d7a73; --pv: #1c1b19; --pb: #e04e16; --pl: #f1efea;
       position: relative; max-width: 860px; margin: 0 auto; background: #fff; color: var(--ink);
-      border-radius: 20px; overflow: hidden; box-shadow: 0 40px 120px -30px rgba(91,61,245,.55), 0 0 0 1px rgba(255,255,255,.08);
+      border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px -20px rgba(0,0,0,.6);
       font-family: var(--f-body);
     }
     .cv-head {
       position: relative; padding: 56px 56px 60px; color: #fff; overflow: hidden;
-      background: linear-gradient(120deg, #3b0f9c 0%, #5b3df5 50%, #2563eb 100%);
+      background: #1c1b19;
     }
-    .cv-head::before, .cv-head::after {
-      content: ''; position: absolute; border-radius: 50%; background: rgba(255,255,255,.07);
-    }
+    .cv-head::before, .cv-head::after { content: none; }
     .cv-head::before { width: 420px; height: 420px; right: -120px; top: -200px; }
     .cv-head::after { width: 300px; height: 300px; right: 180px; bottom: -220px; }
     .cv-head h2 { position: relative; font: 800 clamp(40px, 6vw, 64px)/0.95 var(--f-display); letter-spacing: -0.04em; }
-    .cv-head .role { position: relative; margin-top: 16px; font: 500 13px/1.4 var(--f-mono); letter-spacing: .22em; text-transform: uppercase; opacity: .85; }
+    .cv-head .role { position: relative; margin-top: 14px; font: 500 15px/1.4 var(--f-body); color: #f26b3a; }
     .cv-photo {
       position: absolute; z-index: 2; right: 56px; top: 110px; width: 190px; height: 190px; border-radius: 50%;
-      border: 7px solid #fff; overflow: hidden; box-shadow: 0 20px 40px -10px rgba(40,20,120,.45); background: #eee;
+      border: 7px solid #fff; overflow: hidden; box-shadow: 0 10px 24px -10px rgba(0,0,0,.35); background: #eee;
     }
     .cv-photo img { width: 100%; height: 100%; object-fit: cover; }
 
@@ -53,28 +51,28 @@
     }
     .cv-ic {
       width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; color: #fff; flex: none;
-      background: linear-gradient(135deg, var(--pv), var(--pb));
+      background: var(--pv);
     }
     .cv-ic svg { width: 16px; height: 16px; }
 
     .cv-tl { margin-top: 20px; position: relative; padding-left: 26px; }
-    .cv-tl::before { content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 2px; background: #ddd6fe; }
+    .cv-tl::before { content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 2px; background: #e3e0d8; }
     .cv-tl-item { position: relative; padding-bottom: 20px; }
     .cv-tl-item:last-child { padding-bottom: 0; }
     .cv-tl-item::before {
       content: ''; position: absolute; left: -26px; top: 6px; width: 12px; height: 12px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--pv), var(--pb));
+      background: var(--pv);
     }
-    .cv-tl-item.now::before { box-shadow: 0 0 0 5px #ede9fe; }
+    .cv-tl-item.now::before { box-shadow: 0 0 0 4px #e3e0d8; background: var(--pb); }
     .cv-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
     .cv-row b { font-size: 16px; font-weight: 600; }
-    .pill { flex: none; font: 600 12px/1 var(--f-body); color: #fff; padding: 6px 12px; border-radius: 999px; background: linear-gradient(90deg, var(--pv), var(--pb)); }
+    .pill { flex: none; font: 600 12px/1 var(--f-body); color: #fff; padding: 6px 12px; border-radius: 999px; background: var(--pv); }
     .cv-place { font-style: italic; color: var(--ink3); font-size: 14px; margin-top: 3px; }
     .cv-note { color: var(--ink2); font-size: 14.5px; margin-top: 6px; }
 
     .cv-chips { margin-top: 18px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
-    .cv-chip { font-size: 14px; color: #4c1d95; background: var(--pl); padding: 8px 16px; border-radius: 999px; }
-    .cv-job { margin-top: 18px; border: 1px solid #e9e5fb; background: #fbfaff; border-radius: 14px; padding: 18px 22px; }
+    .cv-chip { font-size: 14px; color: #3d3b36; background: var(--pl); padding: 8px 16px; border-radius: 999px; }
+    .cv-job { margin-top: 18px; border: 1px solid #e6e3dc; background: #faf9f6; border-radius: 14px; padding: 18px 22px; }
     .cv-job b { font-size: 16px; font-weight: 600; }
 
     .cv-side { padding-top: 140px; }
@@ -92,18 +90,18 @@
     .cv-lang span { font-size: 14px; color: var(--ink3); }
 
     .cv-proj { margin-top: 16px; display: grid; gap: 12px; }
-    .cv-proj-item { border: 1px solid #e9e5fb; background: #fbfaff; border-radius: 14px; padding: 14px 18px; }
+    .cv-proj-item { border: 1px solid #e6e3dc; background: #faf9f6; border-radius: 14px; padding: 14px 18px; }
     .cv-proj-item .cv-row b { font-size: 15.5px; }
     .cv-proj-item .url { font: 500 12px/1 var(--f-mono); color: var(--pb); text-decoration: none; }
     .cv-proj-item p { color: var(--ink2); font-size: 14px; margin-top: 6px; line-height: 1.55; }
     .cv-stack { margin-top: 8px; display: flex; gap: 5px; flex-wrap: wrap; }
-    .cv-stack span { font: 500 11px/1 var(--f-mono); color: #4c1d95; background: var(--pl); padding: 5px 8px; border-radius: 6px; }
+    .cv-stack span { font: 500 11px/1 var(--f-mono); color: #3d3b36; background: var(--pl); padding: 5px 8px; border-radius: 6px; }
     .cv-bullets { margin-top: 8px; padding-left: 18px; color: var(--ink2); font-size: 14.5px; display: grid; gap: 4px; }
     .cv-bullets li::marker { color: var(--pb); }
     .cv-skill { margin-top: 14px; }
     .cv-skill b { display: block; font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 7px; }
     .cv-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-    .cv-tags span { font-size: 12.5px; color: #4c1d95; background: var(--pl); padding: 5px 9px; border-radius: 999px; }
+    .cv-tags span { font-size: 12.5px; color: #3d3b36; background: var(--pl); padding: 5px 9px; border-radius: 999px; }
 
     .print-contact { display: none; }
 
@@ -120,7 +118,7 @@
     @media print {
       @page { size: A4; margin: 0; }
       body { background: #fff; }
-      .nav, .toolbar, .hint, .ambient, .grain, .cursor, .cursor-dot, .cursor-label, .footer { display: none !important; }
+      .nav, .toolbar, .hint, .footer { display: none !important; }
       .page { padding: 0; }
       .paper { box-shadow: none; border-radius: 0; max-width: none; }
       * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -165,24 +163,17 @@
   </style>
 </head>
 <body>
-  <div class="ambient" aria-hidden="true"></div>
-  <div class="grain" aria-hidden="true"></div>
-  <div class="cursor" aria-hidden="true"></div>
-  <div class="cursor-dot" aria-hidden="true"></div>
 
   <nav class="nav" id="nav">
-    <a href="index.html" class="logo" data-hover><span class="logo-mark">DC</span> Daniel Calvé</a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html#proyectos">Proyectos</a></li>
-      <li><a href="index.html#sobre-mi">Sobre mí</a></li>
-      <li><a href="cv.html" class="active">CV</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
-    </ul>
-    <div style="display:flex;gap:8px;align-items:center">
-      <a href="assets/CV_Daniel_Calve_Pardo.pdf?v=3" download class="nav-cta" data-hover>
-        PDF
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
-      </a>
+    <div class="wrap">
+      <a href="index.html" class="logo"><span class="logo-mark">D</span> Daniel Calvé</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#proyectos">Proyectos</a></li>
+        <li><a href="index.html#sobre-mi">Sobre mí</a></li>
+        <li><a href="index.html#trayectoria">Trayectoria</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="cv.html" class="nav-cv active">Ver CV</a></li>
+      </ul>
       <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
       </button>
@@ -192,22 +183,19 @@
   <main class="page">
     <div class="toolbar">
       <div>
-        <span class="status"><i></i> Disponible para trabajar<span class="opt"> · Valencia</span></span>
-        <h1 style="margin-top:12px">Todo en <span class="grad-text">una hoja.</span></h1>
+        <span class="status"><i></i> Disponible para trabajar en Valencia</span>
+        <h1 style="margin-top:12px">Currículum<span style="color:var(--accent)">.</span></h1>
       </div>
       <div class="actions">
-        <a href="assets/CV_Daniel_Calve_Pardo.pdf?v=3" download class="btn btn-primary magnetic" data-hover>
+        <a href="assets/CV_Daniel_Calve_Pardo.pdf?v=5" download class="btn btn-primary">
           Descargar PDF
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
         </a>
-        <button class="btn btn-ghost magnetic" data-hover onclick="window.print()">
-          Imprimir
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
-        </button>
+        <button class="btn btn-ghost" onclick="window.print()">Imprimir</button>
       </div>
     </div>
 
-    <article class="paper reveal">
+    <article class="paper">
       <header class="cv-head">
         <h2>Daniel<br>Calvé Pardo</h2>
         <div class="role">Técnico SMR · Desarrollador Web Junior</div>
@@ -316,16 +304,19 @@
       </div>
     </article>
 
-    <p class="hint">¿Lo quieres en PDF? <a href="assets/CV_Daniel_Calve_Pardo.pdf?v=3" target="_blank" rel="noopener" style="color:var(--soft)">Ábrelo aquí</a>.</p>
+    <p class="hint">También puedes <a href="assets/CV_Daniel_Calve_Pardo.pdf?v=5" target="_blank" rel="noopener" style="color:var(--soft)">abrir el PDF</a> en otra pestaña.</p>
   </main>
 
-  <footer class="footer">
+  <footer class="footer dark">
     <div class="wrap">
-      <p>© <span id="year">2026</span> Daniel Calvé Pardo · Valencia</p>
-      <a href="index.html" class="to-top" data-hover>← Volver al portafolio</a>
+      <p>© <span id="year">2026</span> Daniel Calvé Pardo</p>
+      <nav>
+        <a href="index.html">Portafolio</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
     </div>
   </footer>
 
-  <script src="assets/main.js?v=8"></script>
+  <script src="assets/main.js?v=10"></script>
 </body>
 </html>
